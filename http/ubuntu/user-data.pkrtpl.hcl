@@ -1,5 +1,12 @@
 #cloud-config
 autoinstall:
+  identity:
+    username: ${default_user_name}
+    password: '${default_user_password}'
+    hostname: 'ubuntu-server-template'
+  storage:
+    layout:
+      name: direct
   version: 1
   locale: de_DE
   keyboard:
@@ -12,7 +19,9 @@ autoinstall:
     - systemctl stop ssh
   ssh:
     install-server: yes
-    allow-pw: yes
+    allow-pw: false
+    authorized-keys:
+      - ${default_user_sshkey}
   late-commands:
     - |
       if [ -f /target/etc/netplan/00-installer-config.yaml ]; then
@@ -27,4 +36,4 @@ autoinstall:
          lock_passwd: True
          sudo: "ALL=(ALL) NOPASSWD:ALL"
          ssh_authorized_keys:
-          - ${ssh_pub_key}
+          - ${default_user_sshkey}

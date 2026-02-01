@@ -1,5 +1,8 @@
 #!/bin/sh -eux
 
+# Make sure cloud-init runs after first boot
+cloud-init clean
+
 echo "remove linux-headers"
 dpkg --list \
   | awk '{ print $2 }' \

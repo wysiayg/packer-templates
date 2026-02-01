@@ -14,7 +14,9 @@ locals {
   data_source_content = var.os_name == "ubuntu" ? {
     "/meta-data" = file("${abspath(path.root)}/http/ubuntu/meta-data")
     "/user-data" = templatefile("${abspath(path.root)}/http/ubuntu/user-data.pkrtpl.hcl", {
-      ssh_pub_key = var.ssh_pub_key
+      default_user_sshkey = var.default_user_sshkey
+      default_user_name = var.default_user_name
+      default_user_password = var.default_user_password
     })
   } : null
 }

@@ -44,7 +44,9 @@ source "proxmox-iso" "template" {
     vlan_tag = "${var.proxmox_network_vlan_tag}"
   }
 
-  qemu_agent = true
+  qemu_agent              = true
+  cloud_init              = true
+  cloud_init_storage_pool = "${var.proxmox_cloudinit_storage_pool}"
 
   node        = "${var.proxmox_node}"
   proxmox_url = "${var.proxmox_url}"

@@ -29,9 +29,19 @@ variable "proxmox_iso_storage_pool" {
   type        = string
   description = "Proxmox storage pool onto which to upload the ISO file."
 }
-variable "ssh_pub_key" {
+variable "default_user_sshkey" {
   type        = string
-  description = "Authorized key for the CM user."
+  description = "Authorized key for the CM and default user."
+  sensitive   = true
+}
+variable "default_user_name" {
+  type        = string
+  description = "Username of the default user."
+  sensitive   = true
+}
+variable "default_user_password" {
+  type        = string
+  description = "Password for the default user."
   sensitive   = true
 }
 variable "proxmox_vm_id" {
